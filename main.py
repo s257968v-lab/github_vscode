@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
-from torch.utils.data import DataLoader  # 追加: これが必要です
+from torch.utils.data import DataLoader  
 from torch.optim.lr_scheduler import StepLR
 
 class Net(nn.Module):
@@ -66,7 +66,6 @@ def test(model: nn.Module, device: torch.device, test_loader: DataLoader) -> Non
         100. * correct / len(test_loader.dataset))) # type: ignore
 
 def main():
-    # 設定（ここをあとでリファクタリングします）
     args = {
         'batch_size': 64,
         'test_batch_size': 1000,
@@ -96,7 +95,6 @@ def main():
         transforms.Normalize((0.1307,), (0.3081,))
     ])
     
-    # データのダウンロード
     dataset1 = datasets.MNIST('../data', train=True, download=True, transform=transform)
     dataset2 = datasets.MNIST('../data', train=False, transform=transform)
     
